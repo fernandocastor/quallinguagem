@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.10.15)  19 OCT 2015 14:39
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.10.15)  19 OCT 2015 14:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1213,7 +1213,7 @@ ist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmtt9.pfb>
-Output written on secomp_2015.pdf (37 pages, 1506079 bytes).
+Output written on secomp_2015.pdf (37 pages, 1506090 bytes).
 PDF statistics:
  2097 PDF objects out of 2487 (max. 8388607)
  1956 compressed objects within 20 object streams
