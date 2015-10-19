@@ -1,0 +1,493 @@
+% Author: Fernando Castor. You can contact the author at castor in the cin.ufpe.br domain. 
+
+%THIS WORK IS LICENSED UNDER A CREATIVE COMMONS ATTRIBUTION-NONCOMMERCIAL-SHAREALIKE 3.0 UNPORTED LICENSE. THE WORK (AS DEFINED BY THE LICENSE) IS PROVIDED UNDER THE TERMS OF THIS CREATIVE COMMONS PUBLIC LICENSE ("CCPL" OR "LICENSE"). THE WORK IS PROTECTED BY COPYRIGHT AND/OR OTHER APPLICABLE LAW. ANY USE OF THE WORK OTHER THAN AS AUTHORIZED UNDER THIS LICENSE OR COPYRIGHT LAW IS PROHIBITED.
+%
+%BY EXERCISING ANY RIGHTS TO THE WORK PROVIDED HERE, YOU ACCEPT AND AGREE TO BE BOUND BY THE TERMS OF THIS LICENSE. TO THE EXTENT THIS LICENSE MAY BE CONSIDERED TO BE A CONTRACT, THE LICENSOR GRANTS YOU THE RIGHTS CONTAINED HERE IN CONSIDERATION OF YOUR ACCEPTANCE OF SUCH TERMS AND CONDITIONS.
+%PLEASE REFER TO THE DESCRIPTION OF THE LICENSE (http://creativecommons.org/licenses/by-nc-sa/3.0/) AND TO ITS FULL TEXT (http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode) FOR MORE INFORMATION.
+
+% THIS WORK USES A NUMBER OF IMAGES FROM THIRD-PARTIES. THE COPYRIGHT OF THESE IMAGES REMAIN WITH THEIR OWNERS. 
+
+% This license applies solely to the secomp_2015.tex file. 
+
+% Build this file with pdflatex secomp_2015.tex
+\documentclass[xcolor=dvipsnames]{beamer}
+\usecolortheme[named=Brown]{structure} 
+%\usetheme{Rochester}
+\usetheme{Frankfurt}
+%\usetheme{Madrid}
+
+\usepackage{booktabs}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage[latin1]{inputenc}   % para os acentos
+\usepackage[brazil]{babel}      % para hifeniza\c{c}\~{a}o
+\usepackage{color}
+
+%\usepackage[english]{babel}
+%\usepackage[utf8]{inputenc}
+
+\definecolor{lightgrey}{rgb}{0.8, 0.8, 0.8}
+\newcommand{\shd}[1]{\colorbox{lightgrey}{#1}}
+
+\newcommand{\tblue}[1]{\textcolor{blue}{#1}}
+\newcommand{\tred}[1]{\textcolor{red}{#1}}
+\newcommand{\tgreen}[1]{\textcolor{green}{#1}}
+\newcommand{\tyellow}[1]{\textcolor{yellow}{#1}}
+
+\newcommand{\byellow}[1]{\colorbox{yellow}{#1}}
+\newcommand{\bred}[1]{\colorbox{red}{\textcolor{white}{#1}}}
+\newcommand{\bgreen}[1]{\colorbox{green}{#1}}
+
+\newcommand*{\vcenteredhbox}[1]{\begingroup
+\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
+\definecolor{lightestgrey}{rgb}{0.91, 0.91, 0.91}
+\newcommand{\lshd}[1]{\colorbox{lightestgrey}{#1}}
+
+\title{\Large Tem muita linguagem de programação. Qual escolher?}
+\author{Fernando Castor}
+\pgfdeclareimage[height=0.4cm]{cc}{license}
+
+\institute{Centro de Informática -- Universidade Federal de Pernambuco \\[2.0cm] {\tiny Alguns direitos reservados }\pgfuseimage{cc} }
+\date{}
+\pgfdeclareimage[height=0.8cm]{logo}{ines}
+\pgfdeclareimage[height=0.8cm]{logo2}{spg}
+\pgfdeclareimage[height=0.7cm]{logo3}{cin}
+\pgfdeclareimage[height=1.0cm]{logo4}{ufpe}
+
+\logo{\pgfuseimage{logo4}\hspace{0.1cm}\pgfuseimage{logo3}\hspace{0.1cm}\pgfuseimage{logo}\hspace{0.1cm}\pgfuseimage{logo2} }
+
+\begin{document}
+
+%--------------------------------------------------------
+\begin{frame}
+	\includegraphics[scale=0.40]{ufrpe.jpg}\\
+\end{frame}
+
+%--------------------------------------------------------
+\begin{frame}
+	\begin{figure}
+	\begin{center}
+	\includegraphics[scale=0.40]{vestibular.jpg}\\
+	\end{center}
+	\end{figure}
+\end{frame}
+
+%--------------------------------------------------------
+\begin{frame}
+	\begin{figure}
+	\begin{center}
+	\includegraphics[scale=0.40]{bode.jpg}\\
+	\end{center}
+	\end{figure}
+\end{frame}
+
+%--------------------------------------------------------
+\begin{frame}
+	\begin{figure}
+	\begin{center}
+	\includegraphics[scale=0.43]{guia_estudante.png}\\
+	\end{center}
+	\end{figure}
+\end{frame}
+
+%--------------------------------------------------------
+\section{Introdução}
+\subsection{Introdução}
+
+\frame{\titlepage}
+
+%--------------------------------------------------------
+\begin{frame}
+	\begin{figure}
+	\includegraphics[scale=0.69]{honest.png}\\
+	%Fonte: http://imgs.xkcd.com/comics/honest.png
+      %Licença: CC BY-SA-NC 2.5.	
+	\end{figure}
+\end{frame}
+
+
+%--------------------------------------------------------
+\begin{frame}
+	\begin{figure}
+	\begin{center}
+	TL;DR:\\[0.3cm]
+	\includegraphics[scale=0.57
+	]{javascript.png}\\
+	\end{center}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Linguagens de Programação}
+    % Considero aqui que estamos falando tanto das linguagens quanto das infra-estruturas
+    % associadas: compiladores, interpretadores e máquinas virtuais. 
+    \begin{itemize}
+    \item Servem para \textbf{dizer ao computador o que fazer}\vspace{0.1cm}
+    \item \textbf{Independentemente da máquina} subjacente\vspace{0.1cm}
+    \item \textbf{Legíveis} para humanos\vspace{0.1cm}
+    \end{itemize}
+\pause
+\vspace{0.4cm}
+\texttt{
+\begin{block}{Hello World!}
+{\footnotesize
+C~~~~~Hello World in Fortran 77\\[0.3cm]
+~~~~~~PROGRAM HELLO\\
+~~~~~~PRINT*, 'Hello, World!'\\
+~~~~~~END      }
+\end{block}
+}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Linguagens de Programação são \tgreen{\textbf{Ferramentas}}}
+	\begin{block}{Cada uma se presta a um fim}
+	% Isso é verdade inclusive para as linguagens ditas ``de propósito geral'', ou seja, 
+	% que não estão restritas a um domínio específico. Embora não estejam restritas a
+	% um domínio, tais linguagens geralmente são mais apropriadas para a construção de
+	% determinados tipos de aplicação, com certas características.
+	\begin{columns}
+	\begin{column}[l]{6.5cm}
+	\begin{itemize}
+	\item \textbf{Fortran}: processamento numérico\vspace{0.2cm}
+	\item \textbf{Cobol}: descrição de dados e aplicações comerciais\vspace{0.2cm}
+	\item \textbf{Perl}: processamento de cadeias de caracteres
+	\end{itemize}\vspace{0.2cm}	
+	\end{column}	
+	\begin{column}[r]{4cm}
+	\begin{figure}
+    \includegraphics[scale=0.22]{tools.jpg}\\
+    % Fonte: http://2.bp.blogspot.com/_axtoXDwp4Zk/TTBbP6aSfzI/AAAAAAAAC8k/pEVG62lPG30/s1600/tools.JPG
+    \end{figure}
+    \end{column}
+	\end{columns}
+    \end{block}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Esse fim \tred{pode mudar} com o tempo}
+Exemplo: \textbf{Java}
+	\begin{figure}
+	\vcenteredhbox{\includegraphics[scale=0.20]{interactiveTV.jpg}}
+    \vcenteredhbox{~$\Rightarrow$~}
+    \vcenteredhbox{\includegraphics[scale=0.27]{applet.png}}
+    \vcenteredhbox{~$\Rightarrow$~} 
+    \vcenteredhbox{\includegraphics[scale=0.20]{symantec.jpg}}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+	\begin{figure}
+	\includegraphics[scale=0.45]{pls.jpg}\\
+	%http://www.collegeteacher.org/csci101/resource_programming/pics/progLanguages.jpg
+	\end{figure}
+{\small    \byellow{Em 19 de outubro de 2015, havia 693 ``LPs'' na lista da Wikipédia.}}
+% Não inclui diversas linguagens ``acadêmicas'', por exemplo, Ptolemy (http://ptolemy.cs.iastate.edu/)
+% e Spec# (http://research.microsoft.com/en-us/projects/specsharp/), esta última projetada e 
+% implementada por pesquisadores da Microsoft Research,
+% nem algumas linguagens ``esotéricas'', como Malbolge (http://www.lscheffer.com/malbolge.shtml), 
+% Whitespace (http://en.wikipedia.org/wiki/Whitespace_(programming_language)) e Shakespeare 
+% (http://en.wikipedia.org/wiki/Shakespeare_(programming_language). 
+% Em contrapartida, inclui algumas linguagens que não são estritamente falando linguagens de programação, 
+% já que não são executáveis em um computador de propósito geral. Exemplos incluem Z e B. 
+% A lista encontra-se em http://en.wikipedia.org/wiki/List_of_programming_languages
+\end{frame}
+
+\section{Quais linguagens?}
+\subsection{Quais linguagens?}
+
+
+\begin{frame}
+\vspace{0.2cm}
+\begin{center}
+\Huge{Quais são as linguagens de programação mais usadas na prática?}
+% Quais são? É um bom momento para se perguntar isso, antes de seguir adiante.
+\end{center}
+\end{frame}
+% Discussão interessante sobre o tema que junta várias das informações apresentadas aqui:
+% http://www.readwriteweb.com/hack/2012/06/5-ways-to-tell-which-programming-lanugages-are-most-popular.php
+
+
+
+
+\begin{frame}
+\frametitle{Não há um censo oficial sobre uso de linguagens}
+\begin{itemize}
+\item Resposta precisa vir de várias fontes
+\vspace{0.2cm}
+\item Com diferentes contextos
+\vspace{0.2cm}
+\item Dados são \tred{difíceis de comparar}
+\end{itemize}    
+\end{frame}
+
+\begin{frame}
+\frametitle{O que significam ``ser usada'' e ``na prática''? }
+\begin{itemize}
+\item Mais \tred{linhas de código} escritas na linguagem?
+\pause
+\vspace{0.3cm}
+\item Número de \tred{\textit{commits}} de programas que usam a linguagem?
+\pause
+\vspace{0.3cm}
+\item Mais \tred{``projetos''} com linhas de código escritas na linguagem?
+\pause
+\begin{itemize}
+\vspace{0.1cm}
+\item O que é um ``projeto''? 
+\vspace{0.1cm}
+\item \tred{\textit{Forks}} contam como projetos separados?
+% Pode parecer óbvio que sim mas, quando paramos para examinar o Github
+% e percebemos que projetos como o jquery têm mais de 9000 forks (https://github.com/jquery/jquery), 
+% a resposta torna-se menos evidente. 
+\vspace{0.1cm}
+\item Se usar apenas \tred{código de terceiros} conta?
+% Código de terceiros: por exemplo, se um programa não inclui nenhuma linha de código desenvolvida
+% ``in-house'' em uma dada linguagem mas utiliza uma biblioteca escrita nessa linguagem, deve ser 
+% levado em conta?
+\end{itemize}
+\vspace{0.3cm}
+\pause
+\item Onde a \tred{linha} da  ``prática'' é \tred{traçada}?
+% Uma linguagem ser usada para implementar o Microsoft Windows significa que ela é usada ``na prática''? Se for usada no Linux também? E no VLC player? E no XMonad? E no Battle for Wesnoth? E em um repositório no Github que tenha 50 seguidores? E nos projetos de disciplinas de graduação? 
+\pause
+\vspace{0.3cm}
+\item É relevante saber se desenvolvedores \tred{falam} muito \tred{sobre}?
+\end{itemize}    
+\end{frame}
+
+\begin{frame}
+\vspace{0.2cm}
+\begin{center}
+\Huge{Em resumo: \\é necessário adotar \\\tred{diferentes perspectivas}. }
+\end{center}
+\end{frame}
+
+
+\section{Popularidade de linguagens}
+\subsection{Popularidade de linguagens}
+
+
+\begin{frame}
+\frametitle{Felizmente...}
+\begin{itemize}
+\item Alguém já fez \bred{parte} do trabalho\vspace{0.3cm}
+\item TIOBE Programming Community Index\vspace{0.1cm}
+% Atualizado mensalmente no endereço http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html
+% Se você simplesmente buscar TIOBE no Google, vai direto para essa página. Vale ressaltar que, até onde pude
+% averiguar, o ranking da TIOBE é o medidor mais popular de popularidade de linguagens de programação. 
+% Uma breve descrição da TIOBE (que é uma empresa sediada na Holanda): 
+% Measuring Software Code Quality
+%TIOBE checks more than 211 million lines of software code for its customers world-wide, real-time, each day.
+%We have combined the best-in-class code quality checking tools into one framework. Via a single web interface you can consult all important software defects and metrics information for all your software projects. We provide the facts and figures, you take the decisions.  
+% (extraída de http://www.tiobe.com)
+\begin{quote}
+... is an indicator of the popularity of programming languages. The index is \bgreen{updated once a month}. The ratings are based on the \tblue{number of skilled engineers} world-wide, \tblue{courses} and \tblue{third party vendors}. The \tblue{popular search engines} Google, Bing, Yahoo!, Wikipedia, Amazon, YouTube and Baidu are used to calculate the ratings. 
+\end{quote}
+% Ou seja, o índice da TIOBE já adota diferentes perspectivas, o que é uma coisa boa. Apesar disso, apresenta uma limitação importante. 
+% Note que nada do que é dito acima menciona diretamente código escrito nas linguagens ou número de repositórios ou projetos que usam certas linguagens. Ou seja, a avaliação de popularidade é feita muito mais com base em quem conhece a linguagem do que em quem de fato a emprega na construção de programas. 
+\end{itemize}    
+\end{frame}
+
+\begin{frame}
+De acordo com a TIOBE, o ranking em outubro/2015 era este:
+\hspace*{2cm}\includegraphics[scale=0.32]{tiobe_languages.png}
+\end{frame}
+
+\begin{frame}
+De acordo com a TIOBE, o ranking em outubro/2015 era este:
+\hspace*{2cm}\includegraphics[scale=0.32]{tiobe_languages2.png}
+% Perl é mais usada que Ruby e JavaScript e Objective-C? C e Python mais usadas que Javascript? Assembly mais usada que Objective-C?
+\end{frame}
+
+
+\begin{frame}
+\vspace{0.2cm}
+\begin{center}
+\Large{Relembrando:}\\[0.1cm]
+{\small \begin{quote}
+... is an indicator of the popularity of programming languages. The index is updated once a month. The ratings are based on the \bred{number of skilled engineers} world-wide, \bred{courses} and \bred{third party vendors}. The \tblue{popular search engines} Google, Bing, Yahoo!, Wikipedia, Amazon, YouTube and Baidu are used to calculate the ratings. 
+% Para aqueles que não se lembram das informações que o ranking da TIOBE captura...
+\end{quote}
+}
+\end{center}
+\pause
+\begin{block}{}
+\begin{center}\Large{Problema do ranking do índice da TIOBE:}\\[0.1cm]
+\large{não menciona diretamente \tred{\textbf{código}} escrito nas linguagens ou \tred{\textbf{número de repositórios ou}} \tred{\textbf{projetos}} que as usam.}
+\end{center}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Obtendo informações sobre código}
+\begin{itemize}
+\item Repositórios de software de código aberto (\textit{forges})\vspace{0.3cm}
+\begin{itemize}
+\item Os maiores incluem dezenas de milhares de projetos\vspace{0.3cm}
+% Grande parte corresponde a software de alta qualidade, com milhares ou milhões de usuários. 
+\item E já fornecem algumas estatísticas\vspace{0.3cm}
+\end{itemize}
+\end{itemize}
+\vspace{0.2cm}
+% Github e %SourceForge
+~~~~~~~~~~~~~~~\includegraphics[scale=0.50]{sourceforge_logo.jpg}~e~\includegraphics[scale=0.25]{github_logo.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Dados do SourceForge}
+\begin{columns}
+\begin{column}[l]{5cm}
+\hspace*{2cm}\includegraphics[scale=0.4]{sourceforge_languages.png}
+%http://sourceforge.net/directory/
+\end{column}
+\begin{column}[l]{4cm}
+{\scriptsize
+{\bf Entre parênteses}: número de projetos que declaram usar a linguagem}
+
+\pause
+\vspace*{0.2cm}
+{\scriptsize
+\tred{Objective-C, Perl e Swift} aparecem no Top 15 da TIOBE mas {\bf não aqui}}
+% As linguagens que aparecem no SourceForge deixam muito claro que essa lista está desatualizada. 
+% O SourceForge caiu muito em popularidade depois do aparecimento do Github.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Dados do Github}
+\includegraphics[scale=0.35]{github_languages.png}
+%https://github.com/blog/2047-language-trends-on-github
+%Dados obtidos via https://github.com/github/linguist. Correspondem ao número de bytes escritos em cada linguagem. 
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{E sobre quais os programadores estão falando?}
+\begin{columns}
+\begin{column}[l]{5cm}
+Tags do {\tt StackOverflow.com} em outubro/2015:\vspace{0.2cm}
+{\scriptsize
+\begin{enumerate}
+\item JavaScript (963637) % Se incluirmos JQuery (666617), AJAX (129764), ANGULARJS (127454), node.js (95618), o número sobre para , colocando JavaScript na primeira posição!
+\item Java (944061) % Se incluirmos Android (739044), o número sobe para 
+\item C\# (860626)
+\item PHP (819438)
+\item Python (483959) % Incluindo o Django (105317), o número sobe 
+\item C++ (401005)
+\item CSS (341154)
+\item SQL (298376) 
+\item asp.net (270712)
+\item Objective-C (242939) % Se Incluirmos ios (378293) e iphone (208062), xcode(91199) o número sobre
+\item C (195691)
+\item Ruby (145367) % Incluindo o Ruby-On-Rails (221233), o número sobe 
+\item r (110405)
+\item VB.NET (90188)
+\end{enumerate}}
+\end{column}
+\begin{column}[l]{4cm}
+{\scriptsize
+{\bf Entre parênteses}: número de posts com aquela tag
+}
+\\[0.3cm]
+\pause
+\begin{block}{}
+{\scriptsize
+Se levarmos JQuery, AJAX, node.js, AngularJS, Django e Rails em conta:
+\begin{enumerate}
+\item[1] JavaScript (\tred{1983090}) % Quase 1/5 das perguntas no StackOverflow!!!!!
+\item[6] Python (\tred{589276})
+\item[7] Ruby (\tred{366600})
+\end{enumerate}
+} 
+\end{block}
+\vspace{0.3cm}
+\pause
+\begin{block}{}
+{\scriptsize
+Se incluirmos Android (Java) e iPhone, iOS e Xcode1 (Objective-C):
+\begin{enumerate}
+\item[2] Java (\tred{1683105}) % Se somarmos Java e Javascript, é 1/3 das perguntas no SO
+\item[3] Objective-C (\tred{920493})
+\end{enumerate}
+} 
+\end{block}
+% Isso poderia ser feito com outras tecnologias, como .NET. O problema é que .NET tem a ver com várias linguagens. 
+\end{column}
+\end{columns}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{The RedMonk Programming Language Rankings}
+\includegraphics[scale=0.30]{redmonk_languages.png}
+% cruza dados do StackOverflow com dados do Github (número de projetos)
+%https://redmonk.com/sogrady/category/programming-languages/
+% Dados de junho de 2015
+\end{frame}
+
+
+
+%OUTRA FONTE:
+%\begin{frame}
+%\vspace{0.2cm}
+%\begin{center}
+%\Huge{Complementarmente: Ohloh.net}
+%% Sobre o Ohloh.net:
+%% Ohloh is a free, public directory of Free and Open Source Software and the contributors who create and maintain it. Ohloh Code is a publicly available, free code search site that indexes most of the projects in Ohloh.
+%% End.: http://www.ohloh.net
+%\\[0.4cm]
+%\Large{http://www.ohloh.net/languages/compare}
+%\\[0.4cm]
+%Permite comparação em termos de diferentes critérios
+%\end{center}
+%\end{frame}
+
+
+\section{Em resumo...}
+\subsection{Em resumo...}
+
+
+\begin{frame}
+	\frametitle{Top 10 a partir de diversas fontes}
+	\begin{figure}
+	
+% É importante levar em conta peculiaridades regionais: Delphi em Petrolina	
+% Fatos  (ainda) pouco conhecidos podem causar grandes mudanças no futuro, 
+% por exemplo, Go pode ser usada para criar programas Android já faz quase um ano
+% Swift está rapidamente suplantando Objective-C.
+	\includegraphics[scale=0.5]{lang_pop.png}\\
+	% Pela figura, dá para ver, por exemplo, que muita gente trabalhar com Objective-C, mas muito desse esforço não visa a construção 
+	% de software de código aberto. 
+	\end{figure}
+	\pause
+\begin{block}{}
+\textbf{Importante}: não representam a indústria \tred{\textbf{como um todo}}.
+\end{block}
+% Java, C, C++, JavaScript, Python e PHP definitivamente sõa muito populares. 
+% Essas não foram as únicas fontes que consultei. Olhei também http://spectrum.ieee.org/at-work/tech-careers/the-top-10-programming-languages/ e outros endereços mencionados acima. Os resultados batem surpreendentemente bem.  
+\end{frame}
+\begin{frame}
+\vspace{0.2cm}
+
+\begin{center}
+\includegraphics[scale=0.14]{flame_war.jpg} \\[0.2cm]
+\Large{Obrigado!}
+\begin{block}{}
+\begin{center}
+castor arroba cin.ufpe.br\\[0.1cm]
+twitter.com/fernandocastor\\[0.1cm]
+github.com/fernandocastor\\[0.1cm]
+\end{center}
+\end{block}
+\end{center}
+\end{frame}
+
+\end{document}
